@@ -7,6 +7,7 @@ import *as Animatable from 'react-native-animatable';
 import { FontAwesome } from '@expo/vector-icons';
 import Feather from 'react-native-vector-icons/Feather';
 import { LinearGradient } from 'expo-linear-gradient';
+// import {AuthContext} from './components/Context';
 
 
 const SignInScreen = ({navigation})=>
@@ -19,7 +20,7 @@ const[data,setData]=React.useState({
   secureTextEntry:true
 });
 
-
+// const {signIn}= React.useContext(AuthContext);
 const textInputChange =(val)=>{
   if(val.length !=0)
   {
@@ -101,6 +102,7 @@ const textInputChange =(val)=>{
 
       <TouchableOpacity
       onPress={updateSecureTextEntry}
+      
       >
         {data.secureTextEntry ?
       <Feather
@@ -119,22 +121,40 @@ const textInputChange =(val)=>{
    <View style={styles.button}>
      <LinearGradient
      colors={['#08d4c4','#01ab9d']}
-     style={styles.signIn}
-     >
+    //  style={styles.signIn}
+     style={[styles.signIn,{
+      borderColor:'#009387',
+      borderWidth:2,
+      borderRadius:8,
+      marginTop:15,
+      width:300,
+    height:40}]}
+    // onPress={()=>{signIn()}}
+    >
        <Text style={[styles.textSign,
-       {color:'#fff'}]}>
+       {color:'#fff',
+       textAlign:'center',
+       paddingTop:5
+       }]}>
          Sign In</Text>
      </LinearGradient>
      <TouchableOpacity
      onPress={()=>navigation.navigate('SignUpScreen')}
      style={[styles.signIn,{
        borderColor:'#009387',
-       borderWidth:1,
-       marginTop:15
+       borderWidth:2,
+       borderRadius:8,
+       marginTop:15,
+       width:300,
+       height:40
+    
+       
      }]}
      >
        <Text style={[styles.textSign, {
-          color:'#009387'
+          color:'#009387',
+          textAlign:'center',
+          paddingTop:5
        }]}> Sign Up</Text>
      </TouchableOpacity>
    </View>
@@ -193,6 +213,9 @@ const styles =StyleSheet.create({
        {
            alignItems:'center',
            marginTop:50,
+           
+
+
           //  justifyContent:'center'
           
        },

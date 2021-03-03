@@ -27,13 +27,23 @@ const SplashScreen = ({navigation})=>
         <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
             <LinearGradient
             colors={['#08d4c4','#01ab9d']}
-            styles={styles.SignIn}
+            // styles={styles.SignIn}
+            style={[styles.signIn,{
+                borderColor:'#009387',
+                borderWidth:2,
+                borderRadius:100,
+                marginTop:15,
+                width:150,
+                height:50    }]}
             >
-<Text style={styles.textSign}> Get Started
+<Text style={[styles.textSign, {
+          color:'#f2f2f2',
+     
+       }]}> Get Started
 <MaterialIcons
 name="navigate-next"
 color="#fff"
-// size={15}
+size={10}
 
 />
 </Text>
@@ -69,7 +79,9 @@ const styles =StyleSheet.create({
          },
          logo:{
              width:height_logo,
-             height:height_logo
+             height:height_logo,
+            //  borderRadius:100,
+            //  borderBottomEndRadius:100
          },
          title:{
              color:'black',
@@ -95,8 +107,10 @@ const styles =StyleSheet.create({
              fontWeight:'bold',
              borderTopLeftRadius:30,
              borderTopRightRadius:30,
-             paddingVertical:20,
-             paddingHorizontal:30
+             paddingVertical:10,
+             textAlign:'center',
+             fontSize:18,
+             paddingHorizontal:10
 
          }
 
