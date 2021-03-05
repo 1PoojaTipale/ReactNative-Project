@@ -7,7 +7,7 @@ import *as Animatable from 'react-native-animatable';
 import { FontAwesome } from '@expo/vector-icons';
 import Feather from 'react-native-vector-icons/Feather';
 import { LinearGradient } from 'expo-linear-gradient';
-// import {AuthContext} from './components/Context';
+ 
 
 
 const SignInScreen = ({navigation})=>
@@ -20,7 +20,7 @@ const[data,setData]=React.useState({
   secureTextEntry:true
 });
 
-// const {signIn}= React.useContext(AuthContext);
+
 const textInputChange =(val)=>{
   if(val.length !=0)
   {
@@ -129,7 +129,7 @@ const textInputChange =(val)=>{
       marginTop:15,
       width:300,
     height:40}]}
-    // onPress={()=>{signIn()}}
+    onPress={()=>{}}
     >
        <Text style={[styles.textSign,
        {color:'#fff',

@@ -8,7 +8,8 @@ import SettingsScreen from './screens/SettingsScreen';
 import DrawerContent from './screens/DrawerContent';
 import BookmarkScreen from './screens/BookmarkScreen';
 import RootStackScreen from  './screens/RootStackScreen';
-// import {AuthContext} from './components/Context';
+
+
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StatusBar } from 'expo-status-bar';
@@ -18,10 +19,10 @@ import { StyleSheet, Text, View,Button, ActivityIndicator } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
-const App= ()=>
+const App= ()=> 
 {
-  const [isLoading,setIsLoading]=React.useState(true);
-  const[userToken,setUserToken]=React.useState(null);
+  // const [isLoading,setIsLoading]=React.useState(true);
+  // const[userToken,setUserToken]=React.useState(null);
 
   // const authContext=React.useMemo(()=>({
   //   signIn:()=>{
@@ -38,30 +39,37 @@ const App= ()=>
   //   },
   // }));
 
-  useEffect(()=>{
-setTimeout(()=>{
-setIsLoading(false)
-},1000);
-  },[]);
-  if(isLoading){
-    return(
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <ActivityIndicator size="large"/>
-      </View>
-    );
-  }
+//   useEffect(()=>{
+// setTimeout(()=>{
+// setIsLoading(false)
+// },1000);
+//   },[]);
+//   if(isLoading){
+//     return(
+//       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+//         <ActivityIndicator size="large"/>
+//       </View>
+//     );
+//   }
   return(
+  
 <NavigationContainer>
 
 <RootStackScreen/>
-
-{/* <Drawer.Navigator drawerContent={props=> <DrawerContent {...props}/>} >
+{/* {
+ <Drawer.Navigator drawerContent={props=> <DrawerContent {...props}/>} >
         <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
         <Drawer.Screen name="SupportScreen" component={SupportScreen} />
         <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
         <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-      </Drawer.Navigator> */}
+      </Drawer.Navigator>
+
+
+
+} */}
+
     </NavigationContainer>
+  
 
   );
 }
