@@ -1,32 +1,53 @@
 import React from 'react';
-import { StyleSheet, Text, View,Button,Dimensions,TouchableOpacity,Platform,TextInput, StatusBar,Image } from 'react-native';
+import { StyleSheet, Text, View,Button,Dimensions,TouchableOpacity,Platform,TextInput, StatusBar } from 'react-native';
 
 // import { LinearGradient } from 'expo-linear-gradient'; 
 
+// import { Form, FormItem } from 'react-native-form-validation';
 // import FontAwesome  from 'react-native-vector-icons/FontAwesome ';
 import { FontAwesome } from '@expo/vector-icons';
 import Feather from 'react-native-vector-icons/Feather';
 import { LinearGradient } from 'expo-linear-gradient';
- 
 
 
-const SignInScreen = ({navigation})=>
+const RegisterScreen = ({navigation})=>
 {
 
 const[data,setData]=React.useState({
+  name:'',
   email:'',
+  emailError:'',
   password:'',
+  confirm_password:'',
   check_textInputChange:false,
-  secureTextEntry:true
+  secureTextEntry:true,
+  confirm_secureTextEntry:true
 });
 
 
+const textsInputChange =(val)=>{
+  if(val.length !=0)
+  {
+    setData({
+      ...data,
+     name:val,
+      check_textsInputChange:true
+    });
+  }
+  else{
+    setData({
+      ...data,
+    name:val,
+      check_textsInputChange:false
+    });
+  }
+}
 const textInputChange =(val)=>{
   if(val.length !=0)
   {
     setData({
       ...data,
-      email:val,
+      name:val,
       check_textInputChange:true
     });
   }
@@ -45,6 +66,12 @@ const textInputChange =(val)=>{
       password:val
     });
   }
+  const handleConfirmPasswordChange=(val)=>{
+    setData({
+      ...data,
+      confirm_password:val
+    });
+  }
 
   const updateSecureTextEntry=()=>{
     setData({
@@ -52,40 +79,41 @@ const textInputChange =(val)=>{
       secureTextEntry:!data.secureTextEntry
     });
   }
+  const updateConfirmSecureTextEntry=()=>{
+    setData({
+      ...data,
+     confirm_secureTextEntry :!data.confirm_secureTextEntry
+    });
+  }
+
+
+  
+
+
   return (
-    
-
-
-
-    
     <View style={styles.container}>
-      <StatusBar backgroundColor='white' barStyle="light-content"/>
+      <StatusBar backgroundColor='#fff' barStyle="light-content"/>
     <View style={styles.header}>
-    < Image
-      animation="bounceIn"
-      duraton="1500"
-      source={ require('../assets/logo2.jpg')}
-     
-      style={styles.logo}
-      resizeMode="stretch"
-      /> 
-    <Text style={styles. text_header}>Login Here !</Text>
+    <Text style={styles. text_header}>Register Now!</Text>
     </View>
+
     <View 
     animation="fadeInUpBig"
      style={styles.footer}>
-    <Text style={styles.text_footer}>Email</Text>
+
+    <Text style={styles.text_footer}>Name</Text>
     <View style={styles.action}>
       <FontAwesome
-      name="envelope"
+      name="user"
       color="#5375a"
       size={20}/>
       <TextInput
-      
-      placeholder= "Your Email"
+      minLength={3}
+      placeholder= "Your Name"
+      keyboardType="default"
       style={styles.textInput}
       autoCapitalize="none"
-      onChangeText={(val)=>textInputChange(val)}
+      onChangeText={(val)=>textsInputChange(val)}
       />
 
       {data.check_textInputChange ?
@@ -101,6 +129,35 @@ const textInputChange =(val)=>{
     
      :null}
     </View>
+    <Text style={[styles.text_footer,{marginTop:30}]}>Email</Text>
+    <View style={styles.action}>
+      <FontAwesome
+      name="envelope"
+      color="#5375a"
+      size={20}/>
+      <TextInput
+      placeholder= "Your Email"
+      keyboardType="email-address"
+      style={styles.textInput}
+      autoCapitalize="none"
+      onChangeText={(val)=>textInputChange(val)}
+      />
+      {data.check_textInputChange ?
+      <View
+      animation="bounceIn"
+      >
+
+        
+  <Feather
+      name="check-circle"
+      color="green"
+      size={20}
+      />
+ 
+      </View>
+    
+     :null}
+    </View>
     <Text style={[styles.text_footer,{marginTop:35} ]}>Password</Text>
     <View style={styles.action}>
       <FontAwesome
@@ -108,9 +165,9 @@ const textInputChange =(val)=>{
       color="#5375a"
       size={20}/>
       <TextInput
-       keyboardType="name-phone-pad"
-       maxLength={10}
       placeholder= "Your Password"
+      keyboardType="name-phone-pad"
+      maxLength={10}
       secureTextEntry={data.secureTextEntry ? true:false}
       style={styles.textInput}
       autoCapitalize="none"
@@ -118,7 +175,6 @@ const textInputChange =(val)=>{
 
       <TouchableOpacity
       onPress={updateSecureTextEntry}
-      
       >
         {data.secureTextEntry ?
       <Feather
@@ -134,10 +190,42 @@ const textInputChange =(val)=>{
       />}
 </TouchableOpacity>
    </View>
+    <Text style={[styles.text_footer,{marginTop:35} ]}> Confirm Password</Text>
+    <View style={styles.action}>
+      <FontAwesome
+      name="lock"
+      color="#5375a"
+      size={20}/>
+      <TextInput
+       keyboardType="name-phone-pad"
+       maxLength={10}
+      placeholder= " Confirm Your Password"
+      secureTextEntry={data.confirm_secureTextEntry ? true:false}
+      style={styles.textInput}
+      autoCapitalize="none"
+      onChangeText={(val)=>handleConfirmPasswordChange(val)}/>
+
+      <TouchableOpacity
+      onPress={updateConfirmSecureTextEntry}
+      >
+        {data.secureTextEntry ?
+      <Feather
+      name="eye-off"
+      color="grey"
+      size={20}
+      />
+      :
+      <Feather
+      name="eye"
+      color="grey"
+      size={20}
+      />}
+</TouchableOpacity>
+   </View>
+    
    <View style={styles.button}>
-     
-     <TouchableOpacity
-     onPress={()=>navigation.navigate('SignUpScreen')}
+        <TouchableOpacity
+     onPress={()=>navigation.goBack()}
      style={[styles.signIn,{
        backgroundColor:'#009387',
        borderColor:'#009387',
@@ -145,30 +233,12 @@ const textInputChange =(val)=>{
        borderRadius:8,
        marginTop:15,
        width:300,
-       height:40   
+       height:40 
+
      }]}
      >
        <Text style={[styles.textSign, {
-          color:'#fff',
-          textAlign:'center',
-          paddingTop:5
-       }]}> Login</Text>
-     </TouchableOpacity>
-     <TouchableOpacity
-     onPress={()=>navigation.navigate('SignUpScreen')}
-     style={[styles.signIn,{
-       borderColor:'#009387',
-       borderWidth:2,
-       borderRadius:8,
-       marginTop:15,
-       width:300,
-       height:40   
-     }]}
-     >
-       <Text style={[styles.textSign, {
-          color:'#009387',
-          textAlign:'center',
-          paddingTop:5
+          color:'#fff',textAlign:'center',paddingTop:5,
        }]}> Register</Text>
      </TouchableOpacity>
    </View>
@@ -176,24 +246,20 @@ const textInputChange =(val)=>{
     </View>
   );
 };
-export default SignInScreen;
-
-const {height}=Dimensions.get("screen");
-const height_logo = height * 0.2;
+export default RegisterScreen;
 
 const styles =StyleSheet.create({
     container:{
         flex:1 ,
         backgroundColor:'#fff',
          alignItems:'center',
-         justifyContent:'center'
+        //  justifyContent:'center'
     },
     header:{
-      flex:2,
-      // justifyContent:'flex-end',
+      flex:1,
+      justifyContent:'flex-end',
     paddingHorizontal:20,
     paddingBottom:50
-    
   },
   footer:{
       flex:3,
@@ -206,8 +272,7 @@ const styles =StyleSheet.create({
        text_header:{
          color:'black',
          fontWeight:'bold',
-         fontSize:30,
-         alignItems:'center'
+         fontSize:30
        },
        text_footer:{
          color:'#05375a',
@@ -232,36 +297,28 @@ const styles =StyleSheet.create({
        {
            alignItems:'center',
            marginTop:50,
-           
-
-
           //  justifyContent:'center'
           
        },
        SignIn:{
            width:150,
-           height:40,
+           height:50,
            justifyContent:'center',
            borderRadius:50,
+          
            
           //  flexDirection:'row'
        },
        textSign:{
 
         fontSize:18,
-        fontWeight:'bold'
-          
+        fontWeight:'bold',
+     
 
-       },
-
-       logo:{
-        width:height_logo,
-        height:height_logo,
-        borderRadius:200,
-        marginTop:50
-        
-        
        }
+
+
+
 
 
 

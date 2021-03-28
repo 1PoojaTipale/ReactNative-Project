@@ -1,12 +1,19 @@
 import React from 'react';
+
+
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './HomeScreen.js';
 import DetailsScreen from './DetailsScreen';
 import ExploreScreen from './ExploreScreen';
 import ProfileScreen from './ProfileScreen';
+import EmployeScreen from './EmployeScreen';
+// import BookmarkScreen from './BookmarkScreen';
+
+
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const Tab = createMaterialBottomTabNavigator();
 const MainTabScreen=()=>(
@@ -26,20 +33,20 @@ const MainTabScreen=()=>(
         ),
       }}
     />
-    <Tab.Screen
-      name="Notifications"
+    {/* <Tab.Screen
+      name="Details"
       component={DetailsStackScreen}
       options={{
-        tabBarLabel: 'Updates',
-        tabBarColor: '#1f65ff',
+        tabBarLabel: 'HR detail',
+        tabBarColor: '#b34180',
         tabBarIcon: ({ color }) => (
           <Icon name="ios-notifications" color={color} size={26} />
         ),
       }}
-    />
+    /> */}
     <Tab.Screen
       name="Profile"
-      component={ProfileScreen}
+      component={ProfileStackScreen}
       options={{
         tabBarLabel: 'Profile',
         tabBarColor: '#694fad',
@@ -48,23 +55,50 @@ const MainTabScreen=()=>(
         ),
       }}
     />
+    
+
+    <Tab.Screen
+      name="Employe"
+      component={EmployeStackScreen}
+      options={{
+        tabBarLabel: 'Employee',
+        tabBarColor: '#6b011f',
+        tabBarIcon: ({ color }) => (
+          <Icon name="ios-people" color={color} size={30} />
+         
+        ),
+      }}
+    />
+
     <Tab.Screen
       name="Explore"
-      component={ExploreScreen}
+      component={ExploreStackScreen}
+      
       options={{
-        tabBarLabel: 'Fxplore',
+        tabBarLabel: 'About Us',
         tabBarColor: '#d02860',
         tabBarIcon: ({ color }) => (
           <Icon name="ios-aperture" color={color} size={26} />
         ),
       }}
     />
+
+
+
   </Tab.Navigator>
 );
 export default MainTabScreen; 
 
 const HomeStack = createStackNavigator();
-const DetailsStack = createStackNavigator();
+// const DetailsStack = createStackNavigator();
+
+
+const ProfileStack = createStackNavigator();
+const ExploreStack = createStackNavigator();
+const EmployeStack = createStackNavigator();
+
+
+
 const HomeStackScreen =({navigation})=>(
     <HomeStack.Navigator screenOptions={{
     headerStyle:{
@@ -72,11 +106,12 @@ const HomeStackScreen =({navigation})=>(
     },
     headerTintColor:'#fff',
     headerTitleStyle:{
-      fontWeight:'bold'
+      fontWeight:'bold',
+      paddingLeft:60
     }
           }}>
-            <HomeStack.Screen name="Home" component={HomeScreen} options={{
-              title:'Overview',
+            <HomeStack.Screen name="DashBoard" component={HomeScreen} options={{
+              // title:'DashBoard',
               headerLeft:()=>(
                 <Icon.Button name="ios-menu" size={25}
                 backgroundColor="#009387" onPress={()=>navigation.openDrawer() }></Icon.Button>
@@ -85,24 +120,109 @@ const HomeStackScreen =({navigation})=>(
           </HomeStack.Navigator> 
     );
     
-    const DetailsStackScreen =({navigation})=>(
-      <DetailsStack.Navigator screenOptions={{
+
+  
+
+    // const DetailsStackScreen =({navigation})=>(
+    //   <DetailsStack.Navigator screenOptions={{
+    //   headerStyle:{
+    //     backgroundColor:'#b34180',
+    //     marginRight:50
+    //   },
+    //   headerTintColor:'#fff',
+    //   headerTitleStyle:{
+    //     fontWeight:'bold',
+    //     padding:30
+    
+    //   }
+    //         }}>
+    //           <DetailsStack.Screen name=" View HR Screen" component={DetailsScreen} options={{
+
+    //             headerLeft:()=>(
+    //               <Icon.Button name="ios-menu" size={25}
+    //               backgroundColor='#b34180' onPress={()=>navigation.openDrawer() }></Icon.Button>
+    //             )
+    //           }} />
+            
+    //         </DetailsStack.Navigator> 
+    //       );
+
+
+
+
+
+          
+      
+
+    const ProfileStackScreen =({navigation})=>(
+      <ProfileStack.Navigator screenOptions={{
       headerStyle:{
-        backgroundColor:'#1f65ff'
+        backgroundColor:'#694fad'
       },
       headerTintColor:'#fff',
       headerTitleStyle:{
-        fontWeight:'bold'
+        fontWeight:'bold',
+        padding:30
+    
       }
             }}>
-              <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
+              <ProfileStack.Screen name=" Company Screen" component={ProfileScreen} options={{
                 headerLeft:()=>(
                   <Icon.Button name="ios-menu" size={25}
-                  backgroundColor="'#1f65ff'" onPress={()=>navigation.openDrawer() }></Icon.Button>
+                  backgroundColor='#694fad' onPress={()=>navigation.openDrawer() }></Icon.Button>
                 )
               }} />
-            </DetailsStack.Navigator> 
-      
-        
-      );
-      
+            </ProfileStack.Navigator> 
+          );
+
+
+    
+
+    const ExploreStackScreen =({navigation})=>(
+      < ExploreStack.Navigator screenOptions={{
+      headerStyle:{
+        backgroundColor:'#d02860'
+      },
+      headerTintColor:'#fff',
+      headerTitleStyle:{
+        fontWeight:'bold',
+        padding:30
+    
+      }
+            }}>
+              < ExploreStack.Screen name=" About Us Screen" component={ExploreScreen} options={{
+                headerLeft:()=>(
+                  <Icon.Button name="ios-menu" size={25}
+                  backgroundColor='#d02860' onPress={()=>navigation.openDrawer() }></Icon.Button>
+                )
+              }} />
+            </ ExploreStack.Navigator> 
+          );
+
+          const EmployeStackScreen =({navigation})=>(
+            <EmployeStack.Navigator screenOptions={{
+            headerStyle:{
+              backgroundColor:'#6b011f'
+            },
+            headerTintColor:'#fff',
+            headerTitleStyle:{
+              fontWeight:'bold',
+              padding:30
+          
+            }
+                  }}>
+                    <EmployeStack.Screen name="Employee Screen" component={EmployeScreen} options={{
+                      headerLeft:()=>(
+                        <Icon.Button name="ios-menu" size={25}
+                        backgroundColor='#6b011f' onPress={()=>navigation.openDrawer() }></Icon.Button>
+                      )
+                    }} />
+                  </EmployeStack.Navigator> 
+                );
+    
+         
+    
+
+
+
+    

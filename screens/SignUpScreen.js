@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View,Button,Dimensions,TouchableOpacity,Platform,TextInput, StatusBar } from 'react-native';
 
 // import { LinearGradient } from 'expo-linear-gradient'; 
-import *as Animatable from 'react-native-animatable';
+
+// import { Form, FormItem } from 'react-native-form-validation';
 // import FontAwesome  from 'react-native-vector-icons/FontAwesome ';
 import { FontAwesome } from '@expo/vector-icons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -13,7 +14,9 @@ const SignInScreen = ({navigation})=>
 {
 
 const[data,setData]=React.useState({
+  name:'',
   email:'',
+  emailError:'',
   password:'',
   confirm_password:'',
   check_textInputChange:false,
@@ -22,12 +25,29 @@ const[data,setData]=React.useState({
 });
 
 
+const textsInputChange =(val)=>{
+  if(val.length !=0)
+  {
+    setData({
+      ...data,
+     name:val,
+      check_textsInputChange:true
+    });
+  }
+  else{
+    setData({
+      ...data,
+    name:val,
+      check_textsInputChange:false
+    });
+  }
+}
 const textInputChange =(val)=>{
   if(val.length !=0)
   {
     setData({
       ...data,
-      email:val,
+      name:val,
       check_textInputChange:true
     });
   }
@@ -65,30 +85,39 @@ const textInputChange =(val)=>{
      confirm_secureTextEntry :!data.confirm_secureTextEntry
     });
   }
+
+
+  
+
+
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+      <StatusBar backgroundColor='#fff' barStyle="light-content"/>
     <View style={styles.header}>
     <Text style={styles. text_header}>Register Now!</Text>
     </View>
-    <Animatable.View 
+
+    <View 
     animation="fadeInUpBig"
      style={styles.footer}>
-    <Text style={styles.text_footer}>Email</Text>
+
+    <Text style={styles.text_footer}>Name</Text>
     <View style={styles.action}>
       <FontAwesome
-      name="user-o"
+      name="user"
       color="#5375a"
       size={20}/>
       <TextInput
-      placeholder= "Your Email"
+      minLength={3}
+      placeholder= "Your Name"
+      keyboardType="default"
       style={styles.textInput}
       autoCapitalize="none"
-      onChangeText={(val)=>textInputChange(val)}
+      onChangeText={(val)=>textsInputChange(val)}
       />
 
       {data.check_textInputChange ?
-      <Animatable.View
+      <View
       animation="bounceIn"
       >
   <Feather
@@ -96,7 +125,36 @@ const textInputChange =(val)=>{
       color="green"
       size={20}
       />
-      </Animatable.View>
+      </View>
+    
+     :null}
+    </View>
+    <Text style={[styles.text_footer,{marginTop:30}]}>Email</Text>
+    <View style={styles.action}>
+      <FontAwesome
+      name="envelope"
+      color="#5375a"
+      size={20}/>
+      <TextInput
+      placeholder= "Your Email"
+      keyboardType="email-address"
+      style={styles.textInput}
+      autoCapitalize="none"
+      onChangeText={(val)=>textInputChange(val)}
+      />
+      {data.check_textInputChange ?
+      <View
+      animation="bounceIn"
+      >
+
+        
+  <Feather
+      name="check-circle"
+      color="green"
+      size={20}
+      />
+ 
+      </View>
     
      :null}
     </View>
@@ -108,6 +166,8 @@ const textInputChange =(val)=>{
       size={20}/>
       <TextInput
       placeholder= "Your Password"
+      keyboardType="name-phone-pad"
+      maxLength={10}
       secureTextEntry={data.secureTextEntry ? true:false}
       style={styles.textInput}
       autoCapitalize="none"
@@ -137,6 +197,8 @@ const textInputChange =(val)=>{
       color="#5375a"
       size={20}/>
       <TextInput
+       keyboardType="name-phone-pad"
+       maxLength={10}
       placeholder= " Confirm Your Password"
       secureTextEntry={data.confirm_secureTextEntry ? true:false}
       style={styles.textInput}
@@ -160,42 +222,27 @@ const textInputChange =(val)=>{
       />}
 </TouchableOpacity>
    </View>
+    
    <View style={styles.button}>
-     <LinearGradient
-     colors={['#08d4c4','#01ab9d']}
-  
-     style={[styles.signIn,{
-      borderColor:'#009387',
-      borderWidth:1,
-      borderRadius:10,
-      marginTop:15,
-      width:300,
-    height:40}]}
-     >
-       <Text style={[styles.textSign,
-       {color:'#fff',
-       textAlign:'center',
-       paddingTop:5
-       }]}>
-         Sign Up</Text>
-     </LinearGradient>
-     <TouchableOpacity
+        <TouchableOpacity
      onPress={()=>navigation.goBack()}
      style={[styles.signIn,{
+       backgroundColor:'#009387',
        borderColor:'#009387',
-       borderWidth:1,
-       borderRadius:10,
+       borderWidth:2,
+       borderRadius:8,
        marginTop:15,
        width:300,
-       height:40
+       height:40 
+
      }]}
      >
        <Text style={[styles.textSign, {
-          color:'#009387',textAlign:'center',paddingTop:5
-       }]}> Sign In</Text>
+          color:'#fff',textAlign:'center',paddingTop:5,
+       }]}> Register</Text>
      </TouchableOpacity>
    </View>
-    </Animatable.View>
+    </View>
     </View>
   );
 };
@@ -204,8 +251,8 @@ export default SignInScreen;
 const styles =StyleSheet.create({
     container:{
         flex:1 ,
-        backgroundColor:'#009387',
-        //  alignItems:'center',
+        backgroundColor:'#fff',
+         alignItems:'center',
         //  justifyContent:'center'
     },
     header:{
@@ -217,13 +264,13 @@ const styles =StyleSheet.create({
   footer:{
       flex:3,
       backgroundColor:'#fff',
-      borderTopLeftRadius:30,
-      borderTopRightRadius:30,
+      borderTopLeftRadius:0,
+      borderTopRightRadius:0,
       paddingVertical:20,
       paddingHorizontal:30
        },
        text_header:{
-         color:'#fff',
+         color:'black',
          fontWeight:'bold',
          fontSize:30
        },
@@ -255,17 +302,18 @@ const styles =StyleSheet.create({
        },
        SignIn:{
            width:150,
-           height:40,
+           height:50,
            justifyContent:'center',
            borderRadius:50,
+          
            
           //  flexDirection:'row'
        },
        textSign:{
 
         fontSize:18,
-        fontWeight:'bold'
-          
+        fontWeight:'bold',
+     
 
        }
 

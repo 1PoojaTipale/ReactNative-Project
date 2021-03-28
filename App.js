@@ -5,8 +5,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainTabScreen from './screens/MainTabScreen';
 import SupportScreen from './screens/SupportScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import DrawerContent from './screens/DrawerContent';
 import BookmarkScreen from './screens/BookmarkScreen';
+
 import RootStackScreen from  './screens/RootStackScreen';
 
 
@@ -55,20 +58,23 @@ const App= ()=>
   
 <NavigationContainer>
 
-<RootStackScreen/>
-{/* {
- <Drawer.Navigator drawerContent={props=> <DrawerContent {...props}/>} >
+{/* <RootStackScreen/> */}
+
+{<Drawer.Navigator drawerContent={props=> <DrawerContent {...props}/>} >
+
         <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
         <Drawer.Screen name="SupportScreen" component={SupportScreen} />
         <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Drawer.Screen name="LoginScreen" component={LoginScreen} />
+        <Drawer.Screen name="RegisterScreen" component={RegisterScreen} />
+       
         <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-      </Drawer.Navigator>
+       
+        
 
+      </Drawer.Navigator>}
 
-
-} */}
-
-    </NavigationContainer>
+    </NavigationContainer> 
   
 
   );

@@ -25,7 +25,8 @@ export function DrawerContent(props)
         <View style={{flexDirection:'row',marginTop:15}}>
             <Avatar.Image
             source={{
-                uri:'https://images.unsplash.com/photo-1612814399449-d62fc71234c9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+               uri:'https://images.unsplash.com/photo-1588457667030-1c71e73de414?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+                // uri:'https://images.unsplash.com/photo-1612814399449-d62fc71234c9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
             }}
             size={50}
             />
@@ -34,7 +35,7 @@ export function DrawerContent(props)
                 <Caption style={styles.caption}>@poojatipale</Caption>
             </View>
         </View>
-        <View style={styles.row}>
+        {/* <View style={styles.row}>
 <View style={styles.section}>
     <Paragraph style={[styles.paragraph,styles.caption]}>98</Paragraph>
     <Caption style={styles.caption}>Following</Caption>
@@ -43,9 +44,34 @@ export function DrawerContent(props)
     <Paragraph style={[styles.paragraph,styles.caption]}>100</Paragraph>
     <Caption style={styles.caption}>Followers</Caption>
 </View>
-</View>
+</View> */}
 </View>
 <Drawer.Section style={styles.drawerContent}>
+
+<DrawerItem
+     icon={(color,size)=>(
+         <Icon
+         name="log-in-outline"
+         color={color}
+         size={20}
+         />
+         )}
+         label="Login"
+     onPress={()=>{props.navigation.navigate('LoginScreen')}}
+     />
+<DrawerItem
+     icon={(color,size)=>(
+         <Icon
+         name="cloud-done-outline"
+         color={color}
+         size={20}
+         />
+         )}
+         label="Register"
+     onPress={()=>{props.navigation.navigate('LoginScreen')}}
+     />
+
+
 <DrawerItem
      icon={({color,size})=>(
          <Icon
@@ -57,6 +83,20 @@ export function DrawerContent(props)
          label="Home"
      onPress={()=>{props.navigation.navigate('Home')}}
      />
+
+<DrawerItem
+     icon={({color,size})=>(
+         <Icon
+         name="notifications-outline"
+         color={color}
+         size={20}
+         />
+         )}
+         label="HR"
+     onPress={()=>{props.navigation.navigate('SettingsScreen')}}
+     />
+
+
 <DrawerItem
      icon={(color,size)=>(
          <Icon
@@ -71,14 +111,34 @@ export function DrawerContent(props)
 <DrawerItem 
      icon={(color,size)=>(
          <Icon
-         name="bookmark-outline"
+         name="people-outline"
          color={color}
          size={20}
          />
          )}
-         label="Bookmarks"
-     onPress={()=>{props.navigation.navigate('BookmarkScreen')}}
+         label="Employee"
+     onPress={()=>{props.navigation.navigate('Employe')}}
      />
+<DrawerItem 
+     icon={(color,size)=>(
+         <Icon
+         name="aperture-outline"
+         color={color}
+         size={20}
+         />
+         )}
+         label="About Us"
+     onPress={()=>{props.navigation.navigate('Explore')}}
+     />
+
+
+
+
+
+
+
+
+{/* 
 <DrawerItem
      icon={(color,size)=>(
          <Icon
@@ -89,10 +149,11 @@ export function DrawerContent(props)
          )}
          label="Settings"
      onPress={()=>{props.navigation.navigate('SettingsScreen')}}
-     />
-     
+     /> */}
 
 
+
+{/* 
 <DrawerItem
      icon={(color,size)=>(
          <Icon
@@ -104,7 +165,7 @@ export function DrawerContent(props)
          )}
          label="Support"
      onPress={()=>{props.navigation.navigate('SupportScreen')}} 
-     />
+     /> */}
 </Drawer.Section>
 <Drawer.Section title="preferences">
     <TouchableRipple onPress={()=>{toggleTheme()}}>

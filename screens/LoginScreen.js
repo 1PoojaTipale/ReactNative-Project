@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
  
 
 
-const SignInScreen = ({navigation})=>
+const LoginScreen = ({navigation})=>
 {
 
 const[data,setData]=React.useState({
@@ -59,7 +59,7 @@ const textInputChange =(val)=>{
 
     
     <View style={styles.container}>
-      <StatusBar backgroundColor='white' barStyle="light-content"/>
+      <StatusBar backgroundColor='white' barStyle="dark-content"/>
     <View style={styles.header}>
     < Image
       animation="bounceIn"
@@ -137,7 +137,7 @@ const textInputChange =(val)=>{
    <View style={styles.button}>
      
      <TouchableOpacity
-     onPress={()=>navigation.navigate('SignUpScreen')}
+     onPress={()=>navigation.navigate('Home')}
      style={[styles.signIn,{
        backgroundColor:'#009387',
        borderColor:'#009387',
@@ -155,7 +155,7 @@ const textInputChange =(val)=>{
        }]}> Login</Text>
      </TouchableOpacity>
      <TouchableOpacity
-     onPress={()=>navigation.navigate('SignUpScreen')}
+     onPress={()=>navigation.navigate('RegisterScreen')}
      style={[styles.signIn,{
        borderColor:'#009387',
        borderWidth:2,
@@ -176,7 +176,7 @@ const textInputChange =(val)=>{
     </View>
   );
 };
-export default SignInScreen;
+export default LoginScreen;
 
 const {height}=Dimensions.get("screen");
 const height_logo = height * 0.2;
@@ -268,3 +268,208 @@ const styles =StyleSheet.create({
 
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import { StyleSheet, Text, View,Button,TouchableOpacity } from 'react-native';
+// const LoginScreen = ({navigation})=>
+// {
+//   return (
+//     <View style={styles.container}>
+//     <Text>Login Screen</Text> 
+//     <View style={styles.button}>
+//      <TouchableOpacity
+//      onPress={()=>navigation.navigate('Home')}
+//      style={[styles.signIn,{
+//        backgroundColor:'#e36bae',
+//        borderColor:'#e36bae',
+//        borderWidth:2,
+//        borderRadius:8,
+//        marginTop:20,
+//        width:300,
+//        height:40 ,
+//        marginBottom:20,
+//        marginLeft:30
+//      }]}
+//      >
+//        <Text style={[styles.textSign, {
+//           color:'#fff',
+//           textAlign:'center',
+//           // paddingTop:5,
+//           marginTop:2,fontSize:20,
+//        }]}>ADD HR</Text>
+//      </TouchableOpacity>
+//     </View>
+  
+//     </View>
+//   );
+// };
+// export default  LoginScreen;
+
+// const styles =StyleSheet.create({
+//     container:{
+//         flex:1 ,
+//          alignItems:'center',
+//          justifyContent:'center'
+//     }
+// })
